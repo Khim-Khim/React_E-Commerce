@@ -6,6 +6,8 @@ const ContactPage = () => {
       <Navbar />
       <div className="container my-3 py-3">
         <h1 className="text-center">Contact Us</h1>
+        <p class="text-center">Any question or remarks? Just write us a message!</p>
+        <p class="text-center">Fill up the form and we will get back to you within 24 hours</p>
         <hr />
         <div class="row my-4 h-100">
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
