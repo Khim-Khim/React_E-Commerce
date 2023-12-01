@@ -1,11 +1,11 @@
 import React from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
-import { addCart, delCart } from "../redux/action";
+//import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const state = useSelector((state) => state.handleCart);
+  const state = []
   const dispatch = useDispatch();
 
   const EmptyCart = () => {
@@ -24,10 +24,10 @@ const Cart = () => {
   };
 
   const addItem = (product) => {
-    dispatch(addCart(product));
+    //dispatch(addCart(product));
   };
   const removeItem = (product) => {
-    dispatch(delCart(product));
+    //dispatch(delCart(product));
   };
 
   const ShowCart = () => {
@@ -167,7 +167,7 @@ const Cart = () => {
       <div className="container my-3 py-3">
         <h1 className="text-center">Cart</h1>
         <hr />
-        {state.length > 0 ? <ShowCart /> : <EmptyCart />}
+        {10 > 0 ? <ShowCart /> : <EmptyCart />}
       </div>
       <Footer />
     </>

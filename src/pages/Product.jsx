@@ -2,41 +2,32 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Link, useParams } from "react-router-dom";
 import Marquee from "react-fast-marquee";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+//import { addCart } from "../redux/action";
 
 import { Footer, Navbar } from "../components";
+import { PostAction, productSelector } from "../redux/product";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [similarProducts, setSimilarProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [loading2, setLoading2] = useState(false);
+  const {products} = useSelector(productSelector);
 
   const dispatch = useDispatch();
 
   const addProduct = (product) => {
-    dispatch(addCart(product));
+    //dispatch(addCart(product));
+  };
+
+  const getProduct = async () => {
+    dispatch(PostAction.getProducts());
   };
 
   useEffect(() => {
-    const getProduct = async () => {
-      setLoading(true);
-      setLoading2(true);
-      const response = await fetch(`https://ecommerce-camping.onrender.com/api/product/getAllProduct`);
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false);
-      const response2 = await fetch(
-        `https://ecommerce-camping.onrender.com/api/product/getAllProduct`
-      );
-      const data2 = await response2.json();
-      setSimilarProducts(data2);
-      setLoading2(false);
-    };
+    console.log("dfsakhjdf")
     getProduct();
-  }, [id]);
+  }, []);
 
   const Loading = () => {
     return (
@@ -172,7 +163,7 @@ const Product = () => {
     <>
       <Navbar />
       <div className="container">
-        <div className="row">{loading ? <Loading /> : <ShowProduct />}</div>
+        <div className="row"><ShowProduct /></div>
         <div className="row my-5 py-5">
           <div className="d-none d-md-block">
           <h2 className="">You may also Like</h2>
@@ -181,7 +172,7 @@ const Product = () => {
               pauseOnClick={true}
               speed={50}
             >
-              {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
+              <ShowSimilarProduct />
             </Marquee>
           </div>
         </div>
